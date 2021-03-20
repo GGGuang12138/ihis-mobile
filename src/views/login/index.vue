@@ -13,7 +13,7 @@
         icon-prefix="toutiao"
         left-icon="shouji"
         placeholder="请输入手机号码"
-        :rules="[{ required: true, message: '' }]"
+        :rules="formRules.mobile"
       />
       <van-field
         class="yanzhengma-margin"
@@ -22,7 +22,7 @@
         icon-prefix="toutiao"
         left-icon="yanzhengma"
         placeholder="请输入验证码"
-        :rules="[{ required: true, message: '' }]"
+        :rules="formRules.code"
         >
           <template #button>
             <van-button size="small" round>发送验证码</van-button>
@@ -50,6 +50,16 @@ export default {
       user: {
         mobile: '', // 手机
         code: '' // 验证码
+      },
+      formRules: {
+        mobile: [
+          { required: true, message: '' },
+          { pattern: /^1[3|5|7|8|9]\d{9}$/, message: '手机号格式错误' }
+        ],
+        code: [
+          { required: true, message: '' },
+          { pattern: /^\d{6}$/, message: '验证码格式错误' }
+        ]
       }
     }
   },
@@ -65,12 +75,8 @@ export default {
         forbidClick: true, // 禁止背景点击
         duration: 0 // 0, 不会自动取消
       })
-      // 1 找到数据接口
-      // 2 封装请求方法
-      // 3 请求调用登陆
       try {
         const res = await login(this.user)
-        // 4 处理响应结果
         Toast.success('登陆成功')
         // Toast.clear()
         console.log(res)
