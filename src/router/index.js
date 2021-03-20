@@ -5,6 +5,7 @@ Vue.use(VueRouter)
 
 // 路由表
 const routes = [
+  // 一级路由，渲染到根节点的router-view
   {
     path: '/login',
     name: 'login',

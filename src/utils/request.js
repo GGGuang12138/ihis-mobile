@@ -5,7 +5,7 @@
 import axios from 'axios'
 
 const request = axios.create({
-  baseURL: 'http://ttapi.research.itcast.cn/' // 基础地址
+  baseURL: 'http://ttapi.research.itcast.cn' // 基础地址
 })
 
 // 请求拦截器
