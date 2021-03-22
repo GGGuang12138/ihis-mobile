@@ -7,7 +7,13 @@
     left-arrow
     @click-left="$router.back()"/>
     <!-- 登陆表单 -->
-    <van-form @submit="onlogin">
+    <van-form
+    :show-error="false"
+    :show-error-message="false"
+    validate-first
+    @submit="onlogin"
+    @failed="onFailed"
+    >
       <van-field
         v-model="user.mobile"
         icon-prefix="toutiao"
@@ -53,11 +59,11 @@ export default {
       },
       formRules: {
         mobile: [
-          { required: true, message: '' },
+          { required: true, message: '请输入手机号码' },
           { pattern: /^1[3|5|7|8|9]\d{9}$/, message: '手机号格式错误' }
         ],
         code: [
-          { required: true, message: '' },
+          { required: true, message: '请输入验证码' },
           { pattern: /^\d{6}$/, message: '验证码格式错误' }
         ]
       }
@@ -83,6 +89,14 @@ export default {
       } catch (err) {
         Toast.fail('登陆失败，手机或验证码错误')
         console.log('登陆失败', err)
+      }
+    },
+    onFailed (error) {
+      if (error.errors[0]) {
+        this.$toast({
+          message: error.errors[0].message,
+          position: 'top'
+        })
       }
     }
   }
