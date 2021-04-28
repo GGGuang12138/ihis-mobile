@@ -70,31 +70,45 @@
                 <p>预约线下</p>
               </div>
             </div>
-        </div>
+          </div>
+          <div class="base_manager">
+            <h3 class="bigTitle">其他</h3>
+            <div class="main_box">
+              <div class="item" @click="jumpToPatManager">
+                <img src="./images/userinfo_cardmanager.png" alt />
+                <p>档案卡管理</p>
+                <span class="arrow_icon"></span>
+              </div>
+              <div class="item" @click="jumpToPatInfo">
+                <img src="./images/userinfo_patRecord.png" alt />
+                <p>患者档案</p>
+                <span class="arrow_icon"></span>
+              </div>
+              <div class="item" @click="jumpToMyEvaluation">
+                <img src="./images/userinfo_evaluate.png" alt />
+                <p>订单评价</p>
+                <span class="arrow_icon"></span>
+              </div>
+              <div class="item" @click="jumpToMyEvaluation">
+                <img src="./images/userinfo_evaluate.png" alt />
+                <p>我的回复</p>
+                <span class="arrow_icon"></span>
+              </div>
+              <div class="item" @click="jumpToAddress">
+                <img src="./images/userinfo_address.png" alt />
+                <p>我的地址</p>
+                <span class="arrow_icon"></span>
+              </div>
+              <div class="item" @click="jumpToCouppon">
+                <img src="./images/userinfo_evaluate.png" alt />
+                <p>优惠券</p>
+                <span class="arrow_icon"></span>
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
-
-    <!-- <div class="not-login">
-      <div @click="$router.push('/login')">
-        <img class="mobile" src="">
-      </div>
-      <div class="text">登录 / 注册</div>
-    </div> -->
-
-    <!-- <van-grid class="nav-grid mb-4" :column-num="2">
-      <van-grid-item
-        class="nav-grid-item"
-        icon-prefix="toutiao"
-        icon="shoucang"
-        text="收藏"
-      />
-      <van-grid-item
-        class="nav-grid-item"
-        icon-prefix="toutiao"
-        icon="lishi"
-        text="历史"
-      />
-    </van-grid> -->
 
   </div>
 </template>
@@ -263,72 +277,37 @@ export default {
         }
       }
     }
-    .record_manager {
-      position: relative;
-      height: 240px;
-      width: 700px;
-      margin: 0 auto;
-      margin-bottom: 28px;
-      background: rgba(255, 255, 255, 1);
-      box-shadow: 0px 4px 16px 0px rgba(207, 207, 207, 0.35);
-      border-radius: 12px;
-      padding: 0 10px;
-      .main_box {
-        display: flex;
-        margin-top: 26px;
-        justify-content: space-around;
-        & > .item {
-          flex: 1;
-          height: 100px;
-
-          &:last-child {
-            border: none;
-          }
-          & > img {
-            width: 50px;
-            height: 50px;
-            display: block;
-            margin: 0 auto;
-            margin-bottom: 14px;
-          }
-          & > p {
-            font-size: 28px;
-            color: #333;
-            text-align: center;
-          }
-        }
-      }
-    }
     .base_manager {
       position: relative;
-      width: 700px;
+      height: 345px;
+      width: 360px;
       margin: 0 auto;
       background: rgba(255, 255, 255, 1);
       box-shadow: 0px 4px 16px 0px rgba(207, 207, 207, 0.35);
-      border-radius: 12px;
-      padding: 0 10px;
-      margin-bottom: 20px;
+      border-radius: 10px;
+      padding: 0 0;
+      margin-bottom: 80px;
       .main_box {
         & > .item {
           position: relative;
           display: flex;
           align-items: center;
-          height: 94px;
-          line-height: 94px;
+          height: 50px;
           display: flex;
           border-bottom: 1px solid #dcdcdc;
-          padding: 0 40px;
+          margin: 0px 10px 0px 10px;
+          padding: 0 20px;
           &:last-child {
             border: none;
           }
           & > img {
-            max-width: 38px;
-            max-height: 38px;
+            max-width: 20px;
+            max-height: 20px;
             display: inline-block;
-            margin-right: 18px;
+            margin-right: 10px;
           }
           & > p {
-            font-size: 28px;
+            font-size: 15px;
             color: #333;
             text-align: center;
           }
@@ -337,10 +316,10 @@ export default {
             right: 20px;
             top: 32px;
             width: 20px;
-            height: 30px;
+            height: 32px;
             display: block;
-            @include bis("~@/images/new_version/appo_arrow_right.png");
-            margin-left: 40px;
+            //@include bis("./images/appo_arrow_right.png");
+            margin-left: 10px;
           }
         }
       }
