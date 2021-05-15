@@ -13,3 +13,9 @@ export const login = data => {
     data
   })
 }
+export const getRecDoctorChannels = () => {
+  return request({
+    method: 'GET',
+    url: '/test/'
+  })
+}
