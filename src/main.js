@@ -11,6 +11,8 @@ import Vant from 'vant'
 import './styles/index.less'
 // 加载 Vant 组件库样式
 import 'vant/lib/index.css'
+// 高德地图
+import './plugin/aMap'
 // 全局注册组件
 Vue.use(Vant)
 Vue.config.productionTip = false
