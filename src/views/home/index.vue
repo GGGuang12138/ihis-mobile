@@ -4,6 +4,7 @@
     <el-amap vid="amap" :plugin="plugin" class="amap-demo"> </el-amap>
     <van-nav-bar class="app-nav-bar">
       <van-button
+      @click="goAmap()"
       class="city-btn"
       slot="title"
       icon="arrow-down"
@@ -25,7 +26,7 @@
       <van-grid-item icon="photo-o" text="我的咨询" />
       <van-grid-item icon="photo-o" text="我的报告" />
       <van-grid-item icon="photo-o" text="门诊缴费" />
-      <van-grid-item icon="photo-o" text="医院查找" />
+      <van-grid-item icon="photo-o" text="医院查找" @click= "goRec"/>
       <van-grid-item icon="photo-o" text="满意度调查" />
       <van-grid-item icon="photo-o" text="复诊建议" />
       <van-grid-item icon="photo-o" text="健康课程" />
@@ -135,6 +136,17 @@ export default {
   mounted () {
   },
   methods: {
+    goAmap () {
+      this.$router.push('/amap')
+    },
+    goRec () {
+      this.$router.push({
+        path: '/rec',
+        query: {
+          city: this.city
+        }
+      })
+    },
     async loadDoctorChannels () {
       // 请求获取频道数据
       const { data } = await getRecDoctorChannels()

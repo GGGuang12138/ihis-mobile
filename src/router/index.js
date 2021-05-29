@@ -36,6 +36,16 @@ const routes = [
         component: () => import('@/views/my')
       }
     ]
+  },
+  {
+    path: '/rec',
+    name: 'rec',
+    component: () => import('@/views/rec')
+  },
+  {
+    path: '/amap',
+    name: 'amap',
+    component: () => import('@/views/amap')
   }
 ]
 
