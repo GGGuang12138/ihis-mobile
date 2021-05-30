@@ -46,7 +46,14 @@ const routes = [
     path: '/amap',
     name: 'amap',
     component: () => import('@/views/amap')
+  },
+  {
+    path: '/article/:articleId',
+    name: 'article',
+    component: () => import('@/views/article'),
+    props: true
   }
+
 ]
 
 const router = new VueRouter({

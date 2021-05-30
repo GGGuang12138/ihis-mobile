@@ -13,6 +13,8 @@ import './styles/index.less'
 import 'vant/lib/index.css'
 // 高德地图
 import './plugin/aMap'
+// 时间
+import './utils/dayjs'
 // 全局注册组件
 Vue.use(Vant)
 Vue.config.productionTip = false
