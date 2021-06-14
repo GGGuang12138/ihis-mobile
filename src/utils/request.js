@@ -6,7 +6,7 @@ import axios from 'axios'
 import JSONbig from 'json-bigint'
 
 const request = axios.create({
-  baseURL: 'http://localhost:8083',
+  baseURL: 'http://192.168.0.100:8083',
 
   // 定义后端返回的原始数据的处理
   transformResponse: [function (data) {

@@ -19,3 +19,29 @@ export const getRecDoctorChannels = () => {
     url: '/test/'
   })
 }
+
+/**
+ * 关注用户
+ */
+export const addFollowDoctor = userId => {
+  return request({
+    method: 'POST',
+    url: '/m/user/addFollowDoctor',
+    data: {
+      target: userId
+    }
+  })
+}
+
+/**
+ * 取消关注用户
+ */
+export const deleteFollowDoctor = userId => {
+  return request({
+    method: 'POST',
+    url: '/m/user/deleteFollowDoctor',
+    data: {
+      target: userId
+    }
+  })
+}

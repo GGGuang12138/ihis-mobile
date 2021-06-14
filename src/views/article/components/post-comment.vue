@@ -10,7 +10,8 @@
       show-word-limit
     />
     <van-button
-      size="mini"
+      style="width:70px;height:30px"
+      type="info"
       @click="onPost"
       :disabled="!message"
     >发布</van-button>

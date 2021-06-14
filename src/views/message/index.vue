@@ -10,40 +10,11 @@
         center
         :border="false"
       >
-        <div class="name" slot="title">当前就诊人: 陈国光</div>
-        <van-button
-          class="update-btn"
-          size="medium"
-          round
-          to="/user/profile"
-        >切换就诊人</van-button>
-    </van-cell>
-    <div class="nav">
-      <div>
-        目前共有
+        <div class="name" slot="title">目前共有
         <span class="noread">1</span>
-        条未读消息
-        <span class="readAll">全部消息</span>
-      </div>
-      <div>
-        <span></span>
-        <img
-          src="./images/message_show.png"
-          v-if="messageVisiable=='show'"
-          @click="messageVisiable='hide'"
-          class="show"
-          alt
-        />
-        <img
-          src="./images/message_hide.png"
-          v-if="messageVisiable=='hide'"
-          @click="messageVisiable='show'"
-          class="show"
-          alt
-        />
-      </div>
-    </div>
-    <div class="types_container">
+        条未读消息</div>
+    </van-cell>
+    <!-- <div class="types_container">
       <div
         class="message_types"
         :class="{'active': true}"
@@ -79,9 +50,9 @@
         :class="{'active':messageType==='WAIT_EVALUATE_VISIT'}"
         @click="changeMsgType('WAIT_EVALUATE_VISIT','满意度评价')"
       >满意度评价</div>
-    </div>
-    <div class="message_list" :class="{'active':true}">
+    </div> -->
       <div class="message_wrap">
+        <div class="message_list" :class="{'active':true}">
         <div class="message_item">
           <div class="message_item_t">
             <img src="./images/dynamic_tips.png" />
@@ -100,10 +71,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="no_data" v-if="messageResult.result.length==0">
-      <span>暂无数据</span>
-    </div> -->
   </div>
 </template>
 
@@ -238,10 +205,10 @@ export default {
 }
 .message_list {
   background: #18202608;
-  position: absolute;
   width: 100%;
   // bottom: 119px;
-  bottom: 50px;
+  // bottom: 50px;
+  height: 710px;
   overflow: auto;
   &.active {
     top: 180px;
@@ -284,7 +251,7 @@ export default {
   vertical-align: -18px;
 }
 .message_item_t .type_text {
-  font-size: 17px;
+  font-size: 20px;
   margin: -20px 0px 0px 8px;
   color: #333333;
   font-weight: bold;

@@ -5,7 +5,7 @@ import request from '@/utils/request'
 import axios from 'axios'
 
 const fileRequest = axios.create({
-  baseURL: 'http://localhost:8082' // 请求的基础路径
+  baseURL: 'http://192.168.0.100:8083' // 请求的基础路径
 })
 
 /**
@@ -29,6 +29,26 @@ export const getUserChannels = () => {
   return request({
     method: 'GET',
     url: '/m/channel/getMyChannels'
+  })
+}
+
+/**
+ * 获取指定文章
+ */
+export const getArticle = articleId => {
+  return request({
+    method: 'GET',
+    url: `/m/article/getArticleDoctor/${articleId}`
+  })
+}
+
+/**
+ * 获取指定文章
+ */
+export const getArticleUser = articleId => {
+  return request({
+    method: 'GET',
+    url: `/m/article/getArticleUser/${articleId}`
   })
 }
 
@@ -69,16 +89,6 @@ export const updateArticle = (articleId, data, draft = false) => {
       draft // 是否存为草稿（true 为草稿）
     },
     data
-  })
-}
-
-/**
- * 获取指定文章
- */
-export const getArticle = articleId => {
-  return request({
-    method: 'GET',
-    url: `/edu/release/getArticle/${articleId}`
   })
 }
 

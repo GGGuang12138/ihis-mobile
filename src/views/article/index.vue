@@ -8,30 +8,23 @@
       @click-left="$router.back()"
     />
     <div class="article-wrap">
-      <h1 class="title">策策策策策鹅测出</h1>
-      <van-cell center class="user-info">
-        <div slot="title" class="name">陈医生</div>
-        <van-image
-          slot="icon"
-          class="avatar"
-          round
-          fit="cover"
-          src="https://img.yzcdn.cn/vant/cat.jpeg"
-        />
-        <div slot="label" class="pubdate">中山大学第一附属医院 神经外科</div>
-        <van-button
-          class="follow-btn"
-          :type="false ? 'default' : 'info'"
-          :icon="false? '' : 'plus'"
-          round
-          size="small"
-        >{{ true ? '已关注' : '关注' }}</van-button>
-      </van-cell>
-      <div
-        class="markdown-body"
-        v-html="content"
-        ref="article-content"
-      ></div>
+      <div class="video">
+        <!-- <article-image
+        :articleUser="articleUser"
+        :article="article"/> -->
+        <article-video v-if="article.articleType == 'VOD'"
+        :articleUser="articleUser"
+        :article="article"/>
+      </div>
+      <article-image v-if="article.articleType == 'IMG'"
+        :articleUser="articleUser"
+        :article="article"/>
+      <comment-list
+        :source="articleId"
+        :list="commentList"
+        @update-total-count="totalCommentCount = $event"
+        @reply-click="onReplyClick"
+      />
     </div>
     <div class="article-bottom">
       <van-button
@@ -49,12 +42,10 @@
       <van-icon
         :color="true ? 'orange' : '#777'"
         :name="true ? 'star' : 'star-o'"
-        @click="onCollect"
       />
       <van-icon
-        :color="true ? 'hotpink' : '#777'"
-        :name="true ? 'good-job' : 'good-job-o'"
-        @click="onLike"
+        :color="articleUser.isLike !== 0 ? 'hotpink' : '#777'"
+        :name="articleUser.isLike !== 0 ? 'good-job' : 'good-job-o'"
       />
       <van-icon name="share" color="#777777"></van-icon>
     </div>
@@ -72,13 +63,24 @@
 
 <script>
 import './github-markdown.css'
+import { getArticle, getArticleUser } from '@/api/article'
+import { addFollowDoctor, deleteFollowDoctor } from '@/api/user'
+import CommentList from './components/comment-list'
+import PostComment from './components/post-comment.vue'
+import ArticleImage from './components/article-image'
+import ArticleVideo from './components/article-video.vue'
 // 在组件中获取动态路由参数：
 //    方式一：this.$route.params.articleId
 //    方式二：props 传参，推荐
 //      this.articleId
 export default {
   name: 'ArticleDetail',
-  components: {},
+  components: {
+    CommentList,
+    PostComment,
+    ArticleImage,
+    ArticleVideo
+  },
   props: {
     articleId: {
       type: String,
@@ -87,17 +89,44 @@ export default {
   },
   data () {
     return {
+      isFollowLoading: false,
       article: null,
-      isPostShow: false,
-      content: '<h1>part1</h1><p>啊啥的2阿福测试文章3号测试文章3号</p><hr><p><s>a啊啥的爱上</s></p><p><strong>123啊啥的</strong></p><p><em>阿道夫</em></p><ul><li><p>123</p></li></ul><p>123</p><h2>part2</h2><ol><li><p>123</p></li><li><p>123</p></li></ol><ol><li><p>124asf</p></li></ol><ul data-type="todo_list"><li data-type="todo_item" data-done="true"><span class="todo-checkbox" contenteditable="false"></span><div class="todo-content"><p>123df</p></div></li><li data-type="todo_item" data-done="true"><span class="todo-checkbox" contenteditable="false"></span><div class="todo-content"><p>asd1</p></div></li><li data-type="todo_item" data-done="false"><span class="todo-checkbox" contenteditable="false"></span><div class="todo-content"><p>qqwe</p></div></li></ul><h3><span style="color: #00bcd4;">23df123</span></h3><p><span style="color: #ff9800;">asd123</span><span style="color: #000000;">adf</span></p><p></p><p><strong><span style="color: #3f51b5;">asd123</span></strong></p><p><span style="color: #009688;">123</span></p>'
+      articleUser: null,
+      isPostShow: false
     }
   },
 
   computed: {},
   watch: {},
-  created () {},
+  created () {
+    this.loadArticle()
+    this.loadArticleUser()
+  },
   mounted () {},
-  methods: {}
+  methods: {
+    async loadArticle () {
+      const { data } = await getArticle(this.articleId)
+      this.article = data
+    },
+    async loadArticleUser () {
+      const { data } = await getArticleUser(this.articleId)
+      this.articleUser = data
+    },
+    async onFollow () {
+      this.isFollowLoading = true
+      if (this.articleUser.doctor === 1) {
+        // 已关注，取消关注
+        await deleteFollowDoctor(this.article.creatorId)
+        console.log('te')
+        this.articleUser.doctor = 0
+      } else {
+        // 没有关注，添加关注
+        await addFollowDoctor(this.article.creatorId)
+        this.articleUser.doctor = 1
+      }
+      this.isFollowLoading = false
+    }
+  }
 }
 
 </script>
@@ -113,7 +142,7 @@ export default {
 .title {
   font-size: 20px;
   color: #3a3a3a;
-  padding: 24px 20px 18px;
+  padding: 10px 20px 10px;
   background-color: #fff;
   margin: 0;
 }
