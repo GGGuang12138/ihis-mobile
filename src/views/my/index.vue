@@ -15,96 +15,43 @@
           src="https://img.yzcdn.cn/vant/cat.jpeg"
         />
         <div class="info">
-            <div class="patient_name">陈国光 </div>
-            <div class="patient_gender">男 年龄:12</div>
-            <div class="patient_phone">联系方式:15625501056</div>
+            <div class="patient_name">新用户 </div>
+            <div class="patient_gender">点击填写详细资料</div>
+            <div class="patient_phone">15625501056</div>
         </div>
       </van-cell>
       <van-grid class="data-info" :border="false" :column-num="2">
         <van-grid-item class="data-info-item">
           <div slot="text" class="text-wrap">
             <div class="count">13</div>
-            <div class="text">关注医生</div>
+            <div class="text">关注专家</div>
           </div>
         </van-grid-item>
         <van-grid-item class="data-info-item">
           <div slot="text" class="text-wrap">
             <div class="count">13</div>
-            <div class="text">关注医院</div>
+            <div class="text">收藏资讯</div>
           </div>
         </van-grid-item>
       </van-grid>
     </van-cell-group>
     <div class="userinfo_body">
         <div class="mannger_list">
-          <div class="health_manager">
-            <h3 class="bigTitle">健康档案</h3>
-            <div class="main_box">
-              <div class="item" >
-                <img src="./images/jkdda.png" alt />
-                <p>健康档案</p>
-              </div>
-              <div class="item">
-                <img src="./images/jbxx.png" alt />
-                <p>基本信息</p>
-              </div>
-            </div>
-          </div>
-          <div class="order_manager">
-            <h3 class="bigTitle">订单中心</h3>
-            <div class="main_box">
-              <div class="item" @click="jumpOrderList('',0)">
-                <img src="./images/qbdd.png" alt />
-                <p>全部订单</p>
-              </div>
-              <div class="item" @click="jumpOrderList('SERVICE_PACK',1)">
-                <img src="./images/qbdd.png" alt />
-                <p>健康计划</p>
-              </div>
-              <div class="item" @click="jumpOrderList('CONSULATION_PACK',2)">
-                <img src="./images/qbdd.png" alt />
-                <p>咨询订单</p>
-              </div>
-              <div class="item" @click="toUnderLine">
-                <img src="./images/qbdd.png" alt />
-                <p>预约线下</p>
-              </div>
-            </div>
-          </div>
           <div class="base_manager">
             <h3 class="bigTitle">其他</h3>
             <div class="main_box">
-              <div class="item" @click="jumpToPatManager">
-                <img src="./images/userinfo_cardmanager.png" alt />
-                <p>档案卡管理</p>
-                <span class="arrow_icon"></span>
-              </div>
-              <div class="item" @click="jumpToPatInfo">
-                <img src="./images/userinfo_patRecord.png" alt />
-                <p>患者档案</p>
-                <span class="arrow_icon"></span>
-              </div>
-              <div class="item" @click="jumpToMyEvaluation">
-                <img src="./images/userinfo_evaluate.png" alt />
-                <p>订单评价</p>
-                <span class="arrow_icon"></span>
-              </div>
               <div class="item" @click="jumpToMyEvaluation">
                 <img src="./images/userinfo_evaluate.png" alt />
                 <p>我的回复</p>
                 <span class="arrow_icon"></span>
               </div>
-              <div class="item" @click="jumpToAddress">
-                <img src="./images/userinfo_address.png" alt />
-                <p>我的地址</p>
-                <span class="arrow_icon"></span>
-              </div>
-              <div class="item" @click="jumpToCouppon">
+            </div>
+             <div class="main_box">
+              <div class="item" @click="jumpToMyEvaluation">
                 <img src="./images/userinfo_evaluate.png" alt />
-                <p>优惠券</p>
+                <p>退出登陆</p>
                 <span class="arrow_icon"></span>
               </div>
-
             </div>
           </div>
         </div>
@@ -279,7 +226,7 @@ export default {
     }
     .base_manager {
       position: relative;
-      height: 345px;
+      height: 150px;
       width: 360px;
       margin: 0 auto;
       background: rgba(255, 255, 255, 1);
@@ -341,7 +288,7 @@ export default {
     top: 10px;
     width: 6px;
     height: 20px;
-    background: blue;
+    background: #46a3ff;
     border-radius: 1px;
     display: block;
     content: "";

@@ -53,21 +53,21 @@
     </div> -->
       <div class="message_wrap">
         <div class="message_list" :class="{'active':true}">
-        <div class="message_item">
+        <!-- <div class="message_item">
           <div class="message_item_t">
             <img src="./images/dynamic_tips.png" />
             <span class="type_text">系统消息</span>
             <span class="date">2021-03-33</span>
           </div>
           <div class="message_item_b">陈国光医生已接诊</div>
-        </div>
+        </div> -->
         <div class="message_item">
           <div class="message_item_t">
             <img src="./images/dynamic_tips.png" />
             <span class="type_text">系统消息</span>
-            <span class="date">2021-03-33</span>
+            <span class="date">2021-06-14</span>
           </div>
-          <div class="message_item_b">陈国光医生已接诊</div>
+          <div class="message_item_b">医生已经回复，点击查看</div>
         </div>
       </div>
     </div>

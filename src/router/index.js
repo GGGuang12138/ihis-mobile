@@ -38,14 +38,9 @@ const routes = [
     ]
   },
   {
-    path: '/rec',
-    name: 'rec',
-    component: () => import('@/views/rec')
-  },
-  {
-    path: '/amap',
-    name: 'amap',
-    component: () => import('@/views/amap')
+    path: '/search',
+    name: 'search',
+    component: () => import('@/views/search')
   },
   {
     path: '/article/:articleId',

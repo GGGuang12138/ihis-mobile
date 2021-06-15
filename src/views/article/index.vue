@@ -40,12 +40,14 @@
         color="#777"
       />
       <van-icon
-        :color="true ? 'orange' : '#777'"
-        :name="true ? 'star' : 'star-o'"
+        :color="articleUser.collect === 1 ? 'orange' : '#777'"
+        :name="articleUser.collect === 1 ? 'star' : 'star-o'"
+        @click="onCollect"
       />
       <van-icon
         :color="articleUser.isLike !== 0 ? 'hotpink' : '#777'"
         :name="articleUser.isLike !== 0 ? 'good-job' : 'good-job-o'"
+        @click="onLike"
       />
       <van-icon name="share" color="#777777"></van-icon>
     </div>
@@ -54,7 +56,7 @@
       position="bottom"
     >
       <post-comment
-        :target="articleId"
+        :targetId="articleId"
         @post-success="onPostSuccess"
       />
     </van-popup>
@@ -63,7 +65,7 @@
 
 <script>
 import './github-markdown.css'
-import { getArticle, getArticleUser } from '@/api/article'
+import { getArticle, getArticleUser, updateCollect, updateLike } from '@/api/article'
 import { addFollowDoctor, deleteFollowDoctor } from '@/api/user'
 import CommentList from './components/comment-list'
 import PostComment from './components/post-comment.vue'
@@ -92,7 +94,8 @@ export default {
       isFollowLoading: false,
       article: null,
       articleUser: null,
-      isPostShow: false
+      isPostShow: false,
+      comments: null
     }
   },
 
@@ -125,6 +128,49 @@ export default {
         this.articleUser.doctor = 1
       }
       this.isFollowLoading = false
+    },
+    onPostSuccess (comment) {
+      this.comments++
+      this.isPostShow = false
+    },
+    onReplyClick (comment) {
+      console.log('onReplyClick', comment)
+      // 展示回复内容
+      this.isPostShow = true
+      this.isReplyShow = true
+    },
+    async onCollect () {
+      this.$toast.loading({
+        message: '操作中...',
+        forbidClick: true // 禁止背景点击
+      })
+      if (this.articleUser.collect === 1) {
+        // 已收藏，取消收藏
+        await updateCollect(this.articleUser.id, 0)
+        this.articleUser.collect = 0
+      } else {
+        // 没有收藏，添加收藏
+        await updateCollect(this.articleUser.id, 1)
+        this.articleUser.collect = 1
+      }
+      this.$toast.success(`${this.article.collect === 1 ? '' : '取消'}收藏成功`)
+    },
+
+    async onLike () {
+      this.$toast.loading({
+        message: '操作中...',
+        forbidClick: true // 禁止背景点击
+      })
+      if (this.articleUser.isLike === 1) {
+        // 已点赞，取消点赞
+        await updateLike(this.articleUser.id, 0)
+        this.articleUser.isLike = 0
+      } else {
+        // 没有点赞，添加点赞
+        await updateLike(this.articleUser.id, 1)
+        this.articleUser.isLike = 1
+      }
+      this.$toast.success(`${this.article.isLike === 1 ? '' : '取消'}点赞成功`)
     }
   }
 }

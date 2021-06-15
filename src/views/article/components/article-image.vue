@@ -32,6 +32,7 @@
 
 <script>
 import './../github-markdown.css'
+import { addFollowDoctor, deleteFollowDoctor } from '@/api/user'
 export default {
   name: '',
   components: {},
@@ -55,6 +56,20 @@ export default {
   created () {},
   mounted () {},
   methods: {
+    async onFollow () {
+      this.isFollowLoading = true
+      if (this.articleUser.doctor === 1) {
+        // 已关注，取消关注
+        await deleteFollowDoctor(this.article.creatorId)
+        console.log('te')
+        this.articleUser.doctor = 0
+      } else {
+        // 没有关注，添加关注
+        await addFollowDoctor(this.article.creatorId)
+        this.articleUser.doctor = 1
+      }
+      this.isFollowLoading = false
+    }
 
   }
 }

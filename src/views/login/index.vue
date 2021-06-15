@@ -84,8 +84,12 @@ export default {
       try {
         const res = await login(this.user)
         Toast.success('登陆成功')
+        window.localStorage.setItem('user', JSON.stringify(res.data))
         // Toast.clear()
         console.log(res)
+        this.$router.push({
+          path: '/'
+        })
       } catch (err) {
         Toast.fail('登陆失败，手机或验证码错误')
         console.log('登陆失败', err)

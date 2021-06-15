@@ -6,6 +6,7 @@
       class="search-btn"
       slot="title"
       icon="search"
+      to="/search"
       type='info' round>搜索</van-button>
     </van-nav-bar>
     <van-tabs v-model="active">

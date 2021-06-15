@@ -43,7 +43,7 @@ export const deleteCommentLike = commentId => {
 export const addComment = data => {
   return request({
     method: 'POST',
-    url: '/app/v1_0/comments',
+    url: '/m/comment/addComments',
     data
   })
 }

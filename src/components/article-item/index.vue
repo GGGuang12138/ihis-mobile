@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="label-wrap">
-          <span v-if="article.articleType === 'VOD'" class="item-type">课程</span>
+          <span v-if="article.articleType === 'VOD'" class="item-type">视频</span>
           <span>{{ article.creatorName }}</span>
           <span>{{ article.id }}评论</span>
           <span>{{ article.creatorTime | relativeTime}}</span>
